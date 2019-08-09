@@ -3,11 +3,13 @@ import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shopPage';
+import CheckoutPage from './pages/checkout/checkoutPage';
 import Header from './components/header/header';
 import SignInSignUp from './pages/signIn-signUp/signIn-signUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/userSelector';
 
 function App() {
   const dispatch = useDispatch(() => dispatch);
@@ -16,7 +18,7 @@ function App() {
     dispatch
   ]);
   //currentUser from redux
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUser = useSelector(selectCurrentUser, shallowEqual);
 
   useEffect(() => {
     //get current signin User
@@ -39,6 +41,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/shop" component={ShopPage} />
+        <Route path="/checkout" component={CheckoutPage} />
         <Route
           exact
           path="/signin"

@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import './cartIcon.styles.scss';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
+import { selectCartItemsCount } from '../../redux/cart/cartSelector';
 
 const CartIcon = () => {
   const dispatch = useDispatch(() => dispatch);
@@ -11,10 +12,7 @@ const CartIcon = () => {
     dispatch
   ]);
 
-  const itemCount = useSelector(state => {
-    console.log('i am being called');
-    state.cart.cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
-  });
+  const itemCount = useSelector(selectCartItemsCount, shallowEqual);
 
   return (
     <div className="cart-icon" onClick={toggleCart}>
