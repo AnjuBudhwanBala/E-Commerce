@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './cartDropDown.styles.scss';
 import CustomButton from '../customButton/customButton';
 import CartItem from '../cartItem/cartItem';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectCartItems } from '../../redux/cart/cartSelector';
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-const CartDropDown = ({ history }) => {
+const CartDropDown = ({ history, ...otherProps }) => {
   const itemsInCart = useSelector(selectCartItems, shallowEqual);
-  console.log(itemsInCart);
+  const dispatch = useDispatch();
+  const cartHidden = useCallback(() => dispatch(toggleCartHidden()), [
+    dispatch
+  ]);
 
   return (
     <div className="cart-dropdown">
@@ -21,7 +25,12 @@ const CartDropDown = ({ history }) => {
           <span className="empty-message">Your cart is empty</span>
         )}
       </div>
-      <CustomButton onClick={() => history.push('/checkout')}>
+      <CustomButton
+        onClick={() => {
+          history.push('/checkout');
+          cartHidden();
+        }}
+      >
         GO TO CHECKOUT
       </CustomButton>
     </div>
