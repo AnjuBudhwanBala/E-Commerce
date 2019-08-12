@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import './header.styles.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
+import CartIcon from '../cartIcon/cartIcon';
+import CartDropDown from '../cartDropDown/cartDropDown';
+import { selectCurrentUser } from '../../redux/user/userSelector';
+import { selectCartHidden } from '../../redux/cart/cartSelector';
 
 const Header = () => {
   //currentUser from redux
-  const currentUser = useSelector(state => state.user.currentUser);
+
+  const hidden = useSelector(selectCartHidden, shallowEqual);
+  const currentUser = useSelector(selectCurrentUser, shallowEqual);
 
   return (
     <div className="header">
@@ -30,7 +36,9 @@ const Header = () => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {hidden ? null : <CartDropDown />}
     </div>
   );
 };
