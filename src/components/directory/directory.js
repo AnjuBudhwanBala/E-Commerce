@@ -6,6 +6,7 @@ import { directorySection } from '../../redux/directory/directorySelector';
 
 const Directory = () => {
   const sections = useSelector(directorySection, shallowEqual);
+  console.log(sections, 'sections');
   return (
     <div className="directory-menu">
       {sections.map(section => (
@@ -14,6 +15,7 @@ const Directory = () => {
           title={section.title}
           size={section.size}
           imageUrl={section.imageUrl}
+          linkUrl={section.linkUrl}
         />
       ))}
     </div>
