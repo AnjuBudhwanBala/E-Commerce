@@ -1,14 +1,15 @@
 import React from 'react';
-import MenuItem from '../menu-items/menu-items';
-import './directory.styles.scss';
+import MenuItem from '../menuItems/menuItems';
+
 import { useSelector, shallowEqual } from 'react-redux';
 import { directorySection } from '../../redux/directory/directorySelector';
+import { DirectoryMenuContainer } from './directory.styles';
 
 const Directory = () => {
   const sections = useSelector(directorySection, shallowEqual);
   console.log(sections, 'sections');
   return (
-    <div className="directory-menu">
+    <DirectoryMenuContainer>
       {sections.map(section => (
         <MenuItem
           key={section.id}
@@ -18,7 +19,7 @@ const Directory = () => {
           linkUrl={section.linkUrl}
         />
       ))}
-    </div>
+    </DirectoryMenuContainer>
   );
 };
 

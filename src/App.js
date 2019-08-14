@@ -32,6 +32,7 @@ function App() {
       }
 
       setUser(user);
+
       return unsubscribeFromAuth;
     });
   }, [setUser]);

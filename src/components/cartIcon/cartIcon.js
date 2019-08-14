@@ -1,9 +1,13 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import './cartIcon.styles.scss';
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
+
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cartSelector';
+import {
+  CartIconContainer,
+  ShoppingIconConatiner,
+  ItemCountConatiner
+} from './cartIcon.styles';
 
 const CartIcon = () => {
   const dispatch = useDispatch(() => dispatch);
@@ -15,10 +19,10 @@ const CartIcon = () => {
   const itemCount = useSelector(selectCartItemsCount, shallowEqual);
 
   return (
-    <div className="cart-icon" onClick={toggleCart}>
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{itemCount}</span>
-    </div>
+    <CartIconContainer onClick={toggleCart}>
+      <ShoppingIconConatiner />
+      <ItemCountConatiner>{itemCount}</ItemCountConatiner>
+    </CartIconContainer>
   );
 };
 

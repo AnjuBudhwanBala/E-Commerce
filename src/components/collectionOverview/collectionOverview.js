@@ -1,18 +1,19 @@
 import React from 'react';
-import './collectionOverview.styles.scss';
+
 import { useSelector, shallowEqual } from 'react-redux';
 import { selectCollectionsForPreview } from '../../redux/shop/shopSelector';
 import CollectionPreview from '../collectionPreview/collectionPreview';
+import { CollectionsOverviewContainer } from './collectionOverview.styles';
 
 const CollectionOverview = () => {
   const collections = useSelector(selectCollectionsForPreview, shallowEqual);
   console.log(collections);
   return (
-    <div className="collection-overview">
+    <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
         <CollectionPreview key={id} {...otherCollectionProps} />
       ))}
-    </div>
+    </CollectionsOverviewContainer>
   );
 };
 
