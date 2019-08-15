@@ -2,7 +2,7 @@ import React from 'react';
 import SignIn from '../../components/signIn/signIn';
 import SignUp from '../../components/signUp/signUp';
 
-import { SignInAndSignUpContainer } from './signIn-signUp.styles';
+import { SignInAndSignUpContainer } from './sign-in-sign-up.styles';
 
 const SignInSignUp = () => {
   return (

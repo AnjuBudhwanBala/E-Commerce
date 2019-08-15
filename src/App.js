@@ -5,7 +5,7 @@ import Homepage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shopPage';
 import CheckoutPage from './pages/checkout/checkoutPage';
 import Header from './components/header/header';
-import SignInSignUp from './pages/signIn-signUp/signIn-signUp';
+import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';

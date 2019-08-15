@@ -7,7 +7,7 @@ import { CollectionsOverviewContainer } from './collectionOverview.styles';
 
 const CollectionOverview = () => {
   const collections = useSelector(selectCollectionsForPreview, shallowEqual);
-  console.log(collections);
+
   return (
     <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
