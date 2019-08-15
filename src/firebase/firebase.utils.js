@@ -36,6 +36,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+//to store shop data in firebase
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -48,6 +49,20 @@ export const addCollectionAndDocuments = async (
     batch.set(newDocRef, obj);
   });
   return await batch.commit();
+};
+
+//to get shopData
+export const convertCollectionSnapshotToMap = collections => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+    return {
+      routerName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+  console.log(transformedCollection);
 };
 
 // Initialize Firebase
