@@ -7,7 +7,7 @@ import { DirectoryMenuContainer } from './directory.styles';
 
 const Directory = () => {
   const sections = useSelector(directorySection, shallowEqual);
-  console.log(sections, 'sections');
+
   return (
     <DirectoryMenuContainer>
       {sections.map(section => (

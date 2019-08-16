@@ -9,32 +9,47 @@ import {
 } from '../../firebase/firebase.utils';
 
 import { useDispatch } from 'react-redux';
-
+import WithSpinner from '../../components/withSpinner/withSpinner';
 import { updateCollections } from '../../redux/shop/shop.actions';
+
+const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const ShopPage = ({ match }) => {
   const [loading, setLoading] = useState(true);
+
   const unsubscribeFromSnapshot = null;
   const dispatch = useDispatch();
 
-  const updatedCollection = useCallback(
+  const dispatchedCollection = useCallback(
     collection => dispatch(updateCollections(collection)),
     [dispatch]
   );
-
   useEffect(() => {
     //to get shop data from database
     const collectionRef = firestore.collection('collection');
     collectionRef.onSnapshot(async snapshot => {
       const collectionMap = convertCollectionSnapshotToMap(snapshot);
-      updatedCollection(collectionMap);
+      dispatchedCollection(collectionMap);
+      setLoading(false);
     });
-  }, [updatedCollection]);
+  }, []);
 
   return (
     <div className="shopPage">
-      <Route exact path={`${match.path}`} component={CollectionOverview} />
-      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+      <Route
+        exact
+        path={`${match.path}`}
+        render={props => (
+          <CollectionOverviewWithSpinner isLoading={loading} {...props} />
+        )}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        render={props => (
+          <CollectionPageWithSpinner isLoading={loading} {...props} />
+        )}
+      />
     </div>
   );
 };
