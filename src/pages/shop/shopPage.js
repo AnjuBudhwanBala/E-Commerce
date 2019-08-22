@@ -1,32 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
-
+import React, { useEffect, useCallback } from 'react';
 import { Route } from 'react-router-dom';
-import CollectionOverview from '../../components/collectionOverview/collectionOverview';
-import CollectionPage from '../collection/collectionPage';
-
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import WithSpinner from '../../components/withSpinner/withSpinner';
+import { useDispatch } from 'react-redux';
 import { fetchCollectionStartAsync } from '../../redux/shop/shop.actions';
-import {
-  selectIsCollectionFetching,
-  selectIsCollectionsLoaded
-} from '../../redux/shop/shopSelector';
-
-const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
-const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+import CollectionOverviewContainer from '../../components/collectionOverview/collectionOverviewContainer';
+import CollectionPageContainer from '../collection/collectionPageContainer';
 
 const ShopPage = ({ match }) => {
   const unsubscribeFromSnapshot = null;
   const dispatch = useDispatch();
-
-  const isCollectionFetching = useSelector(
-    selectIsCollectionFetching,
-    shallowEqual
-  );
-  const isCollectionLoaded = useSelector(
-    selectIsCollectionsLoaded,
-    shallowEqual
-  );
 
   const fetchAsyncCollection = useCallback(
     () => dispatch(fetchCollectionStartAsync()),
@@ -42,21 +23,11 @@ const ShopPage = ({ match }) => {
       <Route
         exact
         path={`${match.path}`}
-        render={props => (
-          <CollectionOverviewWithSpinner
-            isLoading={isCollectionFetching}
-            {...props}
-          />
-        )}
+        component={CollectionOverviewContainer}
       />
       <Route
         path={`${match.path}/:collectionId`}
-        render={props => (
-          <CollectionPageWithSpinner
-            isLoading={!isCollectionLoaded}
-            {...props}
-          />
-        )}
+        component={CollectionPageContainer}
       />
     </div>
   );
