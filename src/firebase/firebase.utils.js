@@ -62,14 +62,10 @@ export const convertCollectionSnapshotToMap = collections => {
       items
     };
   });
-  return transformedCollection.reduce(
-    (acc, collection) => {
-      acc[collection.title.toLowerCase()] = collection;
-      return acc;
-    },
-
-    {}
-  );
+  return transformedCollection.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc;
+  }, {});
 };
 
 // Initialize Firebase
