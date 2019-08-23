@@ -6,36 +6,22 @@ import ShopPage from './pages/shop/shopPage';
 import CheckoutPage from './pages/checkout/checkoutPage';
 import Header from './components/header/header';
 import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
+import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/userSelector';
 
 function App() {
-  const dispatch = useDispatch(() => dispatch);
-
-  const setUser = useCallback(user => dispatch(setCurrentUser(user)), [
-    dispatch
-  ]);
   //currentUser from redux
   const currentUser = useSelector(selectCurrentUser, shallowEqual);
+  const dispatch = useDispatch();
 
+  const checkSessionOfUser = useCallback(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
   useEffect(() => {
-    //get current signin User
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      if (user) {
-        const userRef = await createUserProfileDocument(user);
-
-        userRef.onSnapshot(snapshot => {
-          setUser({ id: snapshot.id, ...snapshot.data() });
-        });
-      }
-
-      setUser(user);
-
-      return unsubscribeFromAuth;
-    });
-  }, [setUser]);
+    checkSessionOfUser();
+  }, [checkSessionOfUser]);
 
   return (
     <div className="App">

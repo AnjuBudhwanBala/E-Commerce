@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-
+import React, { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import FormInput from '../formInput/formInput';
 import CustomButton from '../customButton/customButton';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import { SignUpContainer, SignUpTitle } from './signUp.styles';
+import { signUpStart } from '../../redux/user/user.actions';
 
 const SignUp = () => {
   const [input, setInput] = useState({
@@ -12,6 +13,14 @@ const SignUp = () => {
     password: '',
     confirmPassword: ''
   });
+
+  const dispatch = useDispatch();
+  const startSignUp = useCallback(
+    userCredential => {
+      dispatch(signUpStart(userCredential));
+    },
+    [dispatch]
+  );
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -27,17 +36,20 @@ const SignUp = () => {
       alert('password and confirm password does not match');
       return;
     }
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
 
-      createUserProfileDocument(user, { displayName });
-    } catch (error) {
-      console.log(error.message);
-    }
-    setInput({ displayName: '', email: '', password: '', confirmPassword: '' });
+    startSignUp({ displayName, email, password });
+
+    // try {
+    //   const { user } = await auth.createUserWithEmailAndPassword(
+    //     email,
+    //     password
+    //   );
+
+    //   createUserProfileDocument(user, { displayName });
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
+    // setInput({ displayName: '', email: '', password: '', confirmPassword: '' });
   };
 
   return (

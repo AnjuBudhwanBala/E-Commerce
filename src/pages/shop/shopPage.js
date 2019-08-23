@@ -1,16 +1,16 @@
 import React, { useEffect, useCallback } from 'react';
 import { Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchCollectionStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionStart } from '../../redux/shop/shop.actions';
 import CollectionOverviewContainer from '../../components/collectionOverview/collectionOverviewContainer';
 import CollectionPageContainer from '../collection/collectionPageContainer';
 
 const ShopPage = ({ match }) => {
-  const unsubscribeFromSnapshot = null;
+  // const unsubscribeFromSnapshot = null;
   const dispatch = useDispatch();
 
   const fetchAsyncCollection = useCallback(
-    () => dispatch(fetchCollectionStartAsync()),
+    () => dispatch(fetchCollectionStart()),
     [dispatch]
   );
   useEffect(() => {
