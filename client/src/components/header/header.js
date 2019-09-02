@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { auth } from '../../firebase/firebase.utils';
+//import { auth } from '../../firebase/firebase.utils';
 // import './header.styles.scss';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import CartIcon from '../cartIcon/cartIcon';

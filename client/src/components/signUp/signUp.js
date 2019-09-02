@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import FormInput from '../formInput/formInput';
 import CustomButton from '../customButton/customButton';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+//import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import { SignUpContainer, SignUpTitle } from './signUp.styles';
 import { signUpStart } from '../../redux/user/user.actions';
 
