@@ -1,5 +1,29 @@
 # E-Commerce
-This is a clothing e-commerce app which is built upon React Redux with reselect and saga libraries.It uses firebase to store data .For demo use the following link
+This is a clothing e-commerce app which is built upon React Redux with reselect and saga libraries.It uses firebase to store data and stripe as payment platform .For demo use the following link https://online-clothing.herokuapp.com/
+
+## Getting Started
+
+To get the frontend running locally:
+
+- Clone this repo
+
+- npm install to install all required dependencies
+
+-  then got inside client folder and then use "npm start" to start the local server (this project uses create-react-app)
+
+- Local web server will use port 3000.
+
+
+### Prerequisites
+- node.js
+- npm or yarn
+- an account on firebase to store data of an authenticated user
+- stripe account to get payment 
+
+### Installing
+
+firebase installation used following link https://firebase.google.com/docs/web/setup.
+create an an account on stripe use https://stripe.com/
 
 
 ## Available Scripts
