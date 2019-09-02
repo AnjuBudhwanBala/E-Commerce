@@ -14,13 +14,13 @@ To get the frontend running locally:
 - Local web server will use port 3000.
 
 
-### Prerequisites
+## Prerequisites
 - node.js
 - npm or yarn
 - an account on firebase to store data of an authenticated user
 - stripe account to get payment 
 
-### Installing
+## Installing
 
 firebase installation used following link https://firebase.google.com/docs/web/setup.
 create an an account on stripe use https://stripe.com/
