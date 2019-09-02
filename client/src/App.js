@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
-import './App.css';
+
+import { GlobalStyle } from './global.style';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shopPage';
@@ -24,7 +25,8 @@ function App() {
   }, [checkSessionOfUser]);
 
   return (
-    <div className="App">
+    <>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route path="/shop" component={ShopPage} />
@@ -36,7 +38,7 @@ function App() {
         />
         <Route path="/" component={Homepage} />
       </Switch>
-    </div>
+    </>
   );
 }
 
