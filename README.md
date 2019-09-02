@@ -1,6 +1,6 @@
 # E-Commerce
+This is a clothing e-commerce app which is built upon React Redux with reselect and saga libraries.It uses firebase to store data .For demo use the following link
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
