@@ -1,5 +1,9 @@
 # E-Commerce
-This is a clothing e-commerce app which is primarily  built upon React Redux with reselect and saga libraries.It uses firebase to store data and stripe as payment platform . This application has different version as it is developed using different libraries to get the idea of use cases of different libraries . In intital version it used simple redux then redux thunk and after that redux saga and apollo with graphql . For demo use the following link https://online-clothing.herokuapp.com/
+This is a clothing e-commerce app which is primarily  built upon React Redux with reselect and saga libraries.It uses firebase to store data and stripe as payment platform . 
+
+This application has different version as it is developed using different libraries to get the idea of use cases of different libraries . In intital version it used simple redux then redux thunk and after that redux saga and apollo with graphql .
+
+For demo use the following link https://online-clothing.herokuapp.com/.
 
 ## Getting Started
 
@@ -12,6 +16,8 @@ To get the frontend running locally:
 -  then got inside client folder and then use "npm start" to start the local server (this project uses create-react-app)
 
 - Local web server will use port 3000.
+
+- This app also support PWA(Progressive web app)so if you want to run use this link (https://online-clothing.herokuapp.com/) and add to homescreen when popup message asked for future use.
 
 
 ## Prerequisites
