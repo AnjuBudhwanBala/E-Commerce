@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //to make possible cross origin request
 app.use(cors());
 
-//
+//to enforce not HTTPS link to HTTPS
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 if (process.env.NODE_ENV === 'production') {
