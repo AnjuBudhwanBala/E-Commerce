@@ -11,7 +11,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
 
-// compress all responses on server
+// compress all responses on server(to compress all the files after downloaded on server)
 app.use(compression());
 
 //to parse all the file into json
