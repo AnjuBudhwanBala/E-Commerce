@@ -31,9 +31,10 @@ To get the frontend running locally:
 - firebase installation used following link https://firebase.google.com/docs/web/setup.
 - create an an account on stripe use https://stripe.com/
 
+
 ## Libraries
-- css-in-js styled component
-- 
+- css-in-js styled component  https://github.com/styled-components/styled-components
+- express-sslify for non HTTPS user https://www.npmjs.com/package/express-sslify
 
 ## Available Scripts
 
