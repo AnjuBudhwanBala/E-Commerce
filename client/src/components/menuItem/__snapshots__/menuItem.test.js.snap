@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItem component should call history.push with the right string when MenuItemContainer clicked 1`] = `ShallowWrapper {}`;
+
+exports[`MenuItem component should pass size to MenuItemContainer 1`] = `ShallowWrapper {}`;
+
+exports[`MenuItem component should render MenuItem component 1`] = `ShallowWrapper {}`;

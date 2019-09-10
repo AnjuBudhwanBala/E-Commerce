@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuItem from '../menuItems/menuItems';
+import MenuItem from '../menuItem/menuItem';
 
 import { useSelector, shallowEqual } from 'react-redux';
 import { directorySection } from '../../redux/directory/directorySelector';
