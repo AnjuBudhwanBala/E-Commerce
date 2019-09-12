@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
+
 import {
   CollectionItemContainer,
   CollectionFooterContainer,
@@ -11,17 +12,8 @@ import {
   PriceContainer
 } from './collectionItem.styles';
 
-const CollectionItem = ({ item }) => {
-  const { imageUrl, price, name } = item;
-
-  const dispatch = useDispatch(() => dispatch);
-
-  const addCartItem = useCallback(
-    item => {
-      dispatch(addItem(item));
-    },
-    [dispatch]
-  );
+export const CollectionItem = ({ item, addItem }) => {
+  const { name, price, imageUrl } = item;
 
   return (
     <CollectionItemContainer>
@@ -30,11 +22,18 @@ const CollectionItem = ({ item }) => {
         <NameContainer>{name}</NameContainer>
         <PriceContainer>{price}</PriceContainer>
       </CollectionFooterContainer>
-      <AddButton inverted onClick={() => addCartItem(item)}>
-        Add to Cart
+      <AddButton onClick={() => addItem(item)} inverted>
+        Add to cart
       </AddButton>
     </CollectionItemContainer>
   );
 };
 
-export default CollectionItem;
+const mapDispatchToProps = dispatch => ({
+  addItem: item => dispatch(addItem(item))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CollectionItem);

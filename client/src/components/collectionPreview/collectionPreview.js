@@ -8,7 +8,13 @@ import {
 } from './collectionPreview.styles';
 import { withRouter } from 'react-router-dom';
 
-const CollectionPreview = ({ title, items, history, match, routerName }) => {
+export const CollectionPreview = ({
+  title,
+  items,
+  history,
+  match,
+  routerName
+}) => {
   return (
     <CollectionPreviewContainer>
       <TitleContainer

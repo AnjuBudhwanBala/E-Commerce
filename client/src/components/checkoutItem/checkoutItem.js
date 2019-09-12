@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { useDispatch } from 'react-redux';
 import {
   clearItemFromCart,
-  removeItem,
-  addItem
+  addItem,
+  removeItem
 } from '../../redux/cart/cart.actions';
+
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -14,22 +15,8 @@ import {
   RemoveButtonContainer
 } from './checkoutItem.styles';
 
-const CheckoutItem = ({ cartItem }) => {
+export const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
-
-  const dispatch = useDispatch();
-  const clearCartItem = useCallback(item => dispatch(clearItemFromCart(item)), [
-    dispatch
-  ]);
-  const addItemIncrease = useCallback(item => dispatch(addItem(item)), [
-    dispatch
-  ]);
-  const removeCartItem = useCallback(
-    item => {
-      dispatch(removeItem(item));
-    },
-    [dispatch]
-  );
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -37,16 +24,25 @@ const CheckoutItem = ({ cartItem }) => {
       </ImageContainer>
       <TextContainer>{name}</TextContainer>
       <QuantityContainer>
-        <div onClick={() => removeCartItem(cartItem)}>&#10094;</div>
+        <div onClick={() => removeItem(cartItem)}>&#10094;</div>
         <span>{quantity}</span>
-        <div onClick={() => addItemIncrease(cartItem)}>&#10095;</div>
+        <div onClick={() => addItem(cartItem)}>&#10095;</div>
       </QuantityContainer>
       <TextContainer>{price}</TextContainer>
-      <RemoveButtonContainer onClick={() => clearCartItem(cartItem)}>
+      <RemoveButtonContainer onClick={() => clearItem(cartItem)}>
         &#10005;
       </RemoveButtonContainer>
     </CheckoutItemContainer>
   );
 };
 
-export default CheckoutItem;
+const mapDispatchToProps = dispatch => ({
+  clearItem: item => dispatch(clearItemFromCart(item)),
+  addItem: item => dispatch(addItem(item)),
+  removeItem: item => dispatch(removeItem(item))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CheckoutItem);
