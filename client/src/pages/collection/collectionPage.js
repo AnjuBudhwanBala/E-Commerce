@@ -12,7 +12,6 @@ import {
 } from './collectionPage.styles';
 
 export const CollectionPage = ({ collection }) => {
-  console.log(collection);
   const { title, items } = collection;
   return (
     <CollectionPageContainer>
